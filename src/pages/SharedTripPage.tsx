@@ -98,10 +98,10 @@ export default function SharedTripPage() {
           <span className="text-xl font-bold tracking-tight hidden sm:inline-block">Traveloop</span>
         </Link>
         <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm" onClick={() => setShowShareModal(!showShareModal)}>
+          <Button variant="outline" size="sm" onClick={() => setShowShareModal(!showShareModal)} className="rounded-full px-4">
             <Share2 className="mr-2 h-4 w-4" /> Share
           </Button>
-          <Button size="sm" onClick={handleCopyTrip}>
+          <Button size="sm" onClick={handleCopyTrip} className="rounded-full px-4">
             <Copy className="mr-2 h-4 w-4" /> Copy Trip
           </Button>
         </div>

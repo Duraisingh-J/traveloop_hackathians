@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useParams, useOutletContext } from 'react-router-dom'
+import { useParams, useOutletContext, Link } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent } from '@/components/ui/card'
-import { Loader2, MapPin, Clock, IndianRupee } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Loader2, MapPin, Clock, IndianRupee, PlusCircle } from 'lucide-react'
 
 export default function ItineraryViewPage() {
   const { id } = useParams<{ id: string }>()
@@ -38,10 +39,17 @@ export default function ItineraryViewPage() {
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-8">
       {stops.length === 0 ? (
-        <div className="text-center py-20 border-2 border-dashed rounded-xl bg-card">
-          <MapPin className="h-12 w-12 mx-auto text-muted-foreground opacity-20 mb-4" />
-          <h3 className="text-lg font-semibold">Empty Itinerary</h3>
-          <p className="text-muted-foreground">You haven't added any destinations to this trip yet.</p>
+        <div className="text-center py-24 border-2 border-dashed rounded-xl bg-card">
+          <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+            <MapPin className="h-8 w-8 text-accent opacity-60" />
+          </div>
+          <h3 className="text-xl font-bold mb-2">Empty Itinerary</h3>
+          <p className="text-muted-foreground mb-6 max-w-xs mx-auto">No destinations have been added to this trip yet. Start planning your adventure!</p>
+          <Button asChild className="rounded-full px-8">
+            <Link to="/trips/build">
+              <PlusCircle className="mr-2 h-4 w-4" /> Plan Itinerary
+            </Link>
+          </Button>
         </div>
       ) : (
         <div className="relative border-l-2 border-accent/30 pl-6 ml-4 space-y-12">

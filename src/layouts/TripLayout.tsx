@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useParams, Link, useLocation } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
-import { Loader2, ArrowLeft, Map, Wallet, CheckSquare, FileText } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Loader2, ArrowLeft, Map, Wallet, CheckSquare, FileText, PencilLine } from 'lucide-react'
 
 export default function TripLayout() {
   const { id } = useParams<{ id: string }>()
@@ -65,9 +66,16 @@ export default function TripLayout() {
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Trips
           </Link>
           
-          <div>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">{trip.title}</h1>
-            <p className="text-white/80 max-w-2xl line-clamp-2">{trip.description || 'No description provided.'}</p>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">{trip.title}</h1>
+              <p className="text-white/80 max-w-2xl line-clamp-2">{trip.description || 'No description provided.'}</p>
+            </div>
+            <Button asChild size="sm" className="rounded-full px-5 shrink-0 mb-1 bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm">
+              <Link to="/trips/build">
+                <PencilLine className="mr-2 h-4 w-4" /> Edit Itinerary
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

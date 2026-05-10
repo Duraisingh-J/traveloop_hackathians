@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { MapPin, Calendar, PlusCircle, PenSquare, Trash2, Eye, Loader2 } from 'lucide-react'
+import { MapPin, Calendar, PlusCircle, PenSquare, Trash2, Eye, Loader2, Share2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 export default function MyTripsPage() {
@@ -41,6 +41,12 @@ export default function MyTripsPage() {
     }
   }
 
+  const shareTrip = (id: string) => {
+    const url = `${window.location.origin}/shared/${id}`
+    navigator.clipboard.writeText(url)
+    alert(`Public link copied!\n${url}`)
+  }
+
   const formatDate = (dateString: string) => {
     if (!dateString) return 'TBD'
     return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -53,7 +59,7 @@ export default function MyTripsPage() {
           <h1 className="text-3xl font-bold tracking-tight">My Trips</h1>
           <p className="text-muted-foreground mt-1">Manage all your upcoming and past itineraries.</p>
         </div>
-        <Button asChild>
+        <Button asChild className="rounded-full px-6 h-10 font-semibold">
           <Link to="/trips/create">
             <PlusCircle className="mr-2 h-4 w-4" /> Plan New Trip
           </Link>
@@ -103,19 +109,24 @@ export default function MyTripsPage() {
                 </div>
               </CardContent>
               
-              <CardFooter className="border-t bg-muted/20 p-4 flex justify-between">
-                <Button asChild variant="ghost" size="sm" className="text-xs hover:text-accent">
+              <CardFooter className="border-t bg-muted/20 p-3 flex justify-between gap-1">
+                <Button asChild variant="ghost" size="sm" className="text-xs hover:text-accent flex-1">
                   <Link to={`/trips/${trip.id}`}>
                     <Eye className="mr-1.5 h-4 w-4" /> View
                   </Link>
                 </Button>
-                <Button variant="ghost" size="sm" className="text-xs hover:text-primary">
-                  <PenSquare className="mr-1.5 h-4 w-4" /> Edit
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-xs hover:text-accent flex-1"
+                  onClick={() => shareTrip(trip.id)}
+                >
+                  <Share2 className="mr-1.5 h-4 w-4" /> Share
                 </Button>
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-xs text-destructive hover:text-destructive hover:bg-destructive/10"
+                  className="text-xs text-destructive hover:text-destructive hover:bg-destructive/10 flex-1"
                   onClick={() => deleteTrip(trip.id)}
                 >
                   <Trash2 className="mr-1.5 h-4 w-4" /> Delete

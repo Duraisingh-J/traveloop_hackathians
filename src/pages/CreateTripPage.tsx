@@ -108,9 +108,11 @@ export default function CreateTripPage() {
             </div>
 
             <div className="flex justify-end pt-4">
-              <Button type="submit" size="lg" disabled={saving}>
-                {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Continue to Itinerary Builder'} 
-                {!saving && <Map className="ml-2 h-4 w-4" />}
+              <Button type="submit" size="lg" disabled={saving} className="rounded-full px-8">
+                {saving 
+                  ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...</>
+                  : <>Continue to Itinerary Builder <Map className="ml-2 h-4 w-4" /></>
+                }
               </Button>
             </div>
           </CardContent>

@@ -57,7 +57,7 @@ export default function NotesPage() {
             onChange={(e) => setCurrentNote(e.target.value)}
           />
           <div className="bg-muted/30 p-4 border-t flex justify-end">
-            <Button onClick={handleSave} disabled={!currentNote.trim()}>
+            <Button onClick={handleSave} disabled={!currentNote.trim()} className="rounded-full px-6">
               <Save className="mr-2 h-4 w-4" /> Save Note
             </Button>
           </div>

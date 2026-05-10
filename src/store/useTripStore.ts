@@ -4,6 +4,8 @@ export type TripStop = {
   id: string
   city: string
   order: number
+  lat?: number
+  lng?: number
   startDate?: string
   endDate?: string
 }

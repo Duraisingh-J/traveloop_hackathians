@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { PlusCircle, MapPin, Calendar, DollarSign } from 'lucide-react'
+import { PlusCircle, MapPin, Calendar, IndianRupee, Eye, Wallet } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 
@@ -19,7 +19,7 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground mt-1">Welcome back! Here's your travel overview.</p>
         </div>
-        <Button asChild>
+        <Button asChild className="rounded-full px-5 h-10 font-semibold">
           <Link to="/trips/create">
             <PlusCircle className="mr-2 h-4 w-4" /> New Trip
           </Link>
@@ -51,7 +51,7 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Budget</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <IndianRupee className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">₹1,24,500</div>
@@ -92,8 +92,12 @@ export default function DashboardPage() {
               </div>
             </div>
             <div className="flex gap-2 mt-4">
-              <Button className="w-full" variant="secondary">View Itinerary</Button>
-              <Button className="w-full" variant="outline">Manage Budget</Button>
+              <Button className="w-full rounded-full" variant="secondary">
+                <Eye className="mr-2 h-4 w-4" /> View Itinerary
+              </Button>
+              <Button className="w-full rounded-full" variant="outline">
+                <Wallet className="mr-2 h-4 w-4" /> Manage Budget
+              </Button>
             </div>
           </CardContent>
         </Card>

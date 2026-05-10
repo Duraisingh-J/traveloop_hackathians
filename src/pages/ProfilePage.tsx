@@ -96,8 +96,7 @@ export default function ProfilePage() {
             <CardContent>
               <p className="text-xs text-muted-foreground mb-4">Permanently delete your account and all of your content.</p>
               <Button 
-                variant="destructive" 
-                className="w-full"
+                className="w-full rounded-full"
                 onClick={handleDeleteAccount}
                 disabled={deleting}
               >
@@ -167,11 +166,11 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="flex justify-between items-center pt-4 border-t">
-                  <Button type="button" variant="outline" onClick={handleSignOut}>
+                  <Button type="button" variant="outline" onClick={handleSignOut} className="rounded-full px-5">
                     <LogOut className="mr-2 h-4 w-4" /> Sign Out
                   </Button>
                   
-                  <Button type="submit" disabled={loading || fullName === user?.user_metadata?.full_name}>
+                  <Button type="submit" disabled={loading || fullName === user?.user_metadata?.full_name} className="rounded-full px-5">
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />} 
                     Save Changes
                   </Button>
