@@ -20,6 +20,9 @@ import ChecklistPage from './pages/ChecklistPage'
 import NotesPage from './pages/NotesPage'
 import ProfilePage from './pages/ProfilePage'
 
+// Phase 6 Pages
+import SharedTripPage from './pages/SharedTripPage'
+
 function App() {
   const { setSession, session } = useAuthStore()
   const navigate = useNavigate()
@@ -41,7 +44,11 @@ function App() {
 
   // Simple route protection logic
   useEffect(() => {
-    const isPublicRoute = location.pathname === '/' || location.pathname === '/login'
+    const isPublicRoute = 
+      location.pathname === '/' || 
+      location.pathname === '/login' ||
+      location.pathname.startsWith('/shared/')
+
     if (!session && !isPublicRoute) {
       navigate('/login')
     } else if (session && location.pathname === '/login') {
@@ -52,6 +59,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<AuthPage />} />
+      <Route path="/shared/:id" element={<SharedTripPage />} />
       
       <Route element={<MainLayout />}>
         <Route path="/" element={<LandingPage />} />
